@@ -1,13 +1,12 @@
 <template>
   <li class="card">
-    <img src="" alt="card image" class="card__img" />
+    <img :src="card.image" alt="card image" class="card__img" />
     <div class="card__content">
-      <h3 class="card__heading">Наименование товара</h3>
+      <h3 class="card__heading">{{ card.title }}</h3>
       <p class="card__text">
-        Довольно-таки интересное описание товара в несколько строк.
-        Довольно-таки интересное описание товара в несколько строк
+        {{ card.body }}
       </p>
-      <div class="card__price">10 000 руб.</div>
+      <div class="card__price">{{ card.price }} руб.</div>
     </div>
   </li>
 </template>
@@ -16,11 +15,18 @@
 
 export default {
   name: 'store-card',
+  props: {
+    card: {
+      type: Object,
+      required: true,
+    },
+  },
 };
 </script>
 
 <style lang="scss">
 .card {
+  max-width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -30,6 +36,9 @@ export default {
   // .card__img
 
   &__img {
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
   }
 
   // .card__content

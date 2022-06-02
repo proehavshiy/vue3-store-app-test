@@ -1,30 +1,29 @@
 <template>
   <section class="main-content">
     <card-select style="align-self: flex-end" />
-    <ul class="cards-wrapper">
-      <store-card />
-    </ul>
+    <store-card-list :cards="cards" />
   </section>
 </template>
 
 <script>
-import StoreCard from '@/components/StoreCard.vue';
-import CardSelect from './UI/CardSelect.vue';
+import StoreCardList from '@/components/StoreCardList.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'main-content',
-  components: { StoreCard, CardSelect },
+  components: { StoreCardList },
+  computed: {
+    ...mapState({
+      cards: (state) => state.cards,
+    }),
+  },
 };
+
 </script>
 
 <style lang="scss">
 .main-content {
   display: flex;
   flex-direction: column;
-}
-.cards-wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 16px;
 }
 </style>
