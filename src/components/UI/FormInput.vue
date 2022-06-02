@@ -1,10 +1,11 @@
 <template>
-  <div>hello</div>
+  <input type="text" />
 </template>
 
 <script>
 
 export default {
+  name: 'form-input',
 };
 </script>
 
