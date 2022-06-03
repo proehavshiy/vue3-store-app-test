@@ -6,22 +6,25 @@
       :options="sortOptions"
       style="align-self: flex-end"
     />
-    <store-card-list :cards="cards" />
+    <store-card-list :cards="sortedCards" />
   </section>
 </template>
 
 <script>
 import StoreCardList from '@/components/StoreCardList.vue';
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 
 export default {
   name: 'main-content',
   components: { StoreCardList },
   computed: {
     ...mapState({
-      cards: (state) => state.cards,
+      // cards: (state) => state.cards,
       sortOptions: (state) => state.sortOptions,
       selectedSort: (state) => state.selectedSort,
+    }),
+    ...mapGetters({
+      sortedCards: 'sortCards',
     }),
   },
   data() {

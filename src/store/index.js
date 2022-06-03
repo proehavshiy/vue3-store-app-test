@@ -49,10 +49,25 @@ export default createStore({
     sortOptions: [
       { value: 'max', name: 'цена max' },
       { value: 'min', name: 'цена min' },
+      { value: 'title', name: 'по названию' },
     ],
     selectedSort: '',
   }),
   getters: {
+    sortCards(state) {
+      return [...state.cards].sort((card1, card2) => {
+        switch (state.selectedSort) {
+          case 'max':
+            return card2.price - card1.price;
+          case 'min':
+            return card1.price - card2.price;
+          case 'title':
+            return card1.title.toLocaleLowerCase().localeCompare(card2.title.toLocaleLowerCase());
+          default:
+            return 0;
+        }
+      });
+    },
   },
   mutations: {
     setSelectedSort(state, newSelectedSort) {
