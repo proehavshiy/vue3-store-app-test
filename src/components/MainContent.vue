@@ -6,7 +6,7 @@
       :options="sortOptions"
       style="align-self: flex-end"
     />
-    <store-card-list :cards="sortedCards" />
+    <store-card-list :cards="sortedCards" @deleteCard="deleteCard" />
   </section>
 </template>
 
@@ -34,7 +34,11 @@ export default {
   methods: {
     ...mapMutations({
       setSelectedSort: 'setSelectedSort',
+      deleteCard: 'deleteCard',
     }),
+    // deleteCard(id) {
+    //   console.log('id:', id);
+    // },
     // ...mapMutations({
     //   setPage: "post/setPage",
     //   setSearchQuery: "post/setSearchQuery",

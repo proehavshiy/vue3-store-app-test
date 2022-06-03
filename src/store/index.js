@@ -73,8 +73,11 @@ export default createStore({
     setSelectedSort(state, newSelectedSort) {
       state.selectedSort = newSelectedSort;
     },
-    setCards(state, newCards) {
-      state.cards = [...state.cards, newCards];
+    addCard(state, newCard) {
+      state.cards = [...state.cards, newCard];
+    },
+    deleteCard(state, id) {
+      state.cards = state.cards.filter((card) => card.id !== id);
     },
   },
   actions: {

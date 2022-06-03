@@ -1,18 +1,18 @@
 <template>
-  <button class="form__btn"><slot></slot></button>
+  <button class="btn"><slot></slot></button>
 </template>
 
 <script>
 
 export default {
-  name: 'form-button',
+  name: 'main-button',
 };
 </script>
 
 <style lang="scss">
-.form__btn {
-  margin-top: 15px;
-  padding: 10px;
+.btn {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   background-color: none;
   border: 1px solid black;
 }

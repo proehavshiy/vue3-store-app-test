@@ -1,7 +1,7 @@
 <template>
   <section>
     <section-heading>Добавление товара</section-heading>
-    <form-for-cards @createCard="setCards" />
+    <form-for-cards @createCard="addCard" />
   </section>
 </template>
 
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setCards: 'setCards',
+      addCard: 'addCard',
     }),
   },
 };

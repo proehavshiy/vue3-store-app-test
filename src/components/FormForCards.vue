@@ -30,7 +30,7 @@
         v-model.trim.number="newCard.price"
       />
     </label>
-    <form-button>Добавить товар</form-button>
+    <main-button>Добавить товар</main-button>
   </form>
 </template>
 

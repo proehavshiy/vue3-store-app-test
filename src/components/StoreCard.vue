@@ -8,6 +8,7 @@
       </p>
       <div class="card__price">{{ card.price }} руб.</div>
     </div>
+    <main-button class="card__btn" @click="$emit('deleteCard')"></main-button>
   </li>
 </template>
 
@@ -33,6 +34,12 @@ export default {
   // width: 332px;
   height: 423px;
   border: 1px solid red;
+  position: relative;
+
+  &:hover .card__btn {
+    display: block;
+  }
+
   // .card__img
 
   &__img {
@@ -62,6 +69,18 @@ export default {
 
   &__price {
     padding: 10px;
+  }
+
+  // card__btn
+  &__btn {
+    width: 32px;
+    height: 32px;
+    background: #ff8484;
+
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: -8px;
   }
 }
 </style>

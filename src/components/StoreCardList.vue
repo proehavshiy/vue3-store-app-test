@@ -1,10 +1,11 @@
 <template>
   <ul class="cards-wrapper">
-    <store-card v-for="card in cards" :key="card.id" :card="card" />
-    <!--
-      какм поднимать пропсы наверх
-        @onRemove="$emit('onRemove', card.id)"
-      /> -->
+    <store-card
+      v-for="card in cards"
+      :key="card.id"
+      :card="card"
+      @deleteCard="$emit('deleteCard', card.id)"
+    />
   </ul>
 </template>
 
