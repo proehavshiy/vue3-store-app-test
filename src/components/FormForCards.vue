@@ -1,6 +1,5 @@
-/* eslint-disable vuejs-accessibility/label-has-for */
 <template>
-  <form>
+  <form @submit.prevent="createNewCard">
     <label class="label">
       {{ label.title }}
       <form-input
@@ -48,6 +47,7 @@ export default {
         title: '',
         body: '',
         price: null,
+        id: null,
       },
       placeHolder: {
         image: 'Введите ссылку',
@@ -64,7 +64,16 @@ export default {
     };
   },
   methods: {
-
+    createNewCard() {
+      this.newCard.id = Date.now();
+      this.$emit('createCard', this.newCard);
+      this.newCard = {
+        image: '',
+        title: '',
+        body: '',
+        price: null,
+      };
+    },
   },
 };
 </script>
