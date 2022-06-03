@@ -1,25 +1,35 @@
 /* eslint-disable vuejs-accessibility/label-has-for */
 <template>
-  <section-heading>Добавление товара</section-heading>
   <form>
     <label class="label">
-      Наименование товара
-      <form-input placeholder="Введите наименование товара" />
-    </label>
-    <label class="label">
-      Описание товара
-      <form-text-area
-        style="border: 1px solid black"
-        placeholder="Введите описание товара"
+      {{ label.title }}
+      <form-input
+        :placeholder="placeHolder.title"
+        v-model.trim="newCard.title"
       />
     </label>
     <label class="label">
-      Ссылка на изображение товара
-      <form-input placeholder="Введите ссылку" />
+      {{ label.body }}
+      <form-text-area
+        style="border: 1px solid black"
+        :placeholder="placeHolder.body"
+        :model-value="newCard.body"
+        @input="newCard.body = $event.target.value.trim()"
+      />
     </label>
     <label class="label">
-      Цена товара
-      <form-input placeholder="Введите цену" />
+      {{ label.image }}
+      <form-input
+        :placeholder="placeHolder.image"
+        v-model.trim="newCard.image"
+      />
+    </label>
+    <label class="label">
+      {{ label.price }}
+      <form-input
+        :placeholder="placeHolder.price"
+        v-model.trim.number="newCard.price"
+      />
     </label>
     <form-button>Добавить товар</form-button>
   </form>
@@ -30,6 +40,31 @@
 export default {
   name: 'form-for-cards',
   components: {
+  },
+  data() {
+    return {
+      newCard: {
+        image: '',
+        title: '',
+        body: '',
+        price: null,
+      },
+      placeHolder: {
+        image: 'Введите ссылку',
+        title: 'Введите наименование товара',
+        body: 'Введите описание товара',
+        price: 'Введите цену',
+      },
+      label: {
+        image: 'Ссылка на изображение товара',
+        title: 'Наименование товара',
+        body: 'Описание товара',
+        price: 'Цена товара',
+      },
+    };
+  },
+  methods: {
+
   },
 };
 </script>

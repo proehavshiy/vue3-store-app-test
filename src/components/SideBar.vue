@@ -1,5 +1,6 @@
 <template>
   <section>
+    <section-heading>Добавление товара</section-heading>
     <form-for-cards></form-for-cards>
   </section>
 </template>
