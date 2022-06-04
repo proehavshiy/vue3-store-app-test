@@ -1,4 +1,14 @@
 import { createStore } from 'vuex';
+import VuexPersistence from 'vuex-persist';
+
+const localStorageCache = new VuexPersistence({
+  key: 'store-app',
+  storage: window.localStorage,
+  reducer: (state) => ({
+    cards: state.cards,
+    selectedSort: state.selectedSort,
+  }),
+});
 
 export default createStore({
   state: () => ({
@@ -39,7 +49,7 @@ export default createStore({
         id: 5,
       },
       {
-        image: 'https://irecommend.ru/sites/default/files/product-images/185469/XsY2PLnlTDcvJ1JrUyHGw.jpg',
+        image: 'https://img.mvideo.ru/Pdb/20029484b.jpg',
         title: 'Посудомоечная машина Siemens SpeedMatic SN26M285RU',
         body: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
         price: 30000,
@@ -84,5 +94,6 @@ export default createStore({
   },
   modules: {
   },
-  strict: true,
+  plugins: [localStorageCache.plugin],
+  strict: process.env.NODE_ENV !== 'production',
 });

@@ -1,5 +1,5 @@
 <template>
-  <select class="select" @change="changeOption">
+  <select class="select" :value="modelValue" @change="changeOption">
     <option value="" selected>По умолчанию</option>
     <option v-for="option in options" :key="option.value" :value="option.value">
       {{ option.name }}
