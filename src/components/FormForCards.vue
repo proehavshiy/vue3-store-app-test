@@ -47,8 +47,9 @@
         @validate="checkInputValidity"
         required
         type="number"
-        min="100"
-        max="500000"
+        min="990"
+        max="1000000"
+        step="0.01"
       />
       <span class="error" :class="{ error__active: errorMessage.price }">
         {{ errorMessage.price }}
