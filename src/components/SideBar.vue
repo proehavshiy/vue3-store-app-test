@@ -1,7 +1,7 @@
 <template>
   <section>
     <section-heading>Добавление товара</section-heading>
-    <form-for-cards @createCard="addCard" />
+    <form-for-cards @createCard="handleCreateCard" />
   </section>
 </template>
 
@@ -20,6 +20,10 @@ export default {
     ...mapMutations({
       addCard: 'addCard',
     }),
+    handleCreateCard(card) {
+      this.addCard(card);
+      this.$emit('createCard', 'createCard');
+    },
   },
 };
 </script>

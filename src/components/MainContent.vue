@@ -6,7 +6,7 @@
       :options="sortOptions"
       style="align-self: flex-end"
     />
-    <store-card-list :cards="sortedCards" @deleteCard="deleteCard" />
+    <store-card-list :cards="sortedCards" @deleteCard="handleDeleteCard" />
   </section>
 </template>
 
@@ -36,6 +36,10 @@ export default {
       setSelectedSort: 'setSelectedSort',
       deleteCard: 'deleteCard',
     }),
+    handleDeleteCard(card) {
+      this.deleteCard(card);
+      this.$emit('deleteCard', 'deleteCard');
+    },
     // deleteCard(id) {
     //   console.log('id:', id);
     // },

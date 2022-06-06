@@ -1,7 +1,10 @@
 <template>
   <main class="main">
-    <side-bar></side-bar>
-    <main-content></main-content>
+    <side-bar @createCard="showModalInfo"></side-bar>
+    <main-content @deleteCard="showModalInfo"></main-content>
+    <modal-info v-model:visibility="modalStatus">
+      <div>{{ this.modalPhrase }}</div>
+    </modal-info>
   </main>
 </template>
 
@@ -13,6 +16,27 @@ export default {
   components: {
     SideBar,
     MainContent,
+  },
+  data() {
+    return {
+      modalStatus: false,
+      modalPhrase: '',
+    };
+  },
+  methods: {
+    showModalInfo(action) {
+      switch (action) {
+        case 'deleteCard':
+          this.modalPhrase = 'Товар удален';
+          break;
+        case 'createCard':
+          this.modalPhrase = 'Товар успешно добавлен!';
+          break;
+        default:
+          this.modalPhrase = 'hello';
+      }
+      this.modalStatus = true;
+    },
   },
 };
 </script>
