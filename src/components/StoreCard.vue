@@ -6,7 +6,7 @@
       <p class="card__text">
         {{ card.body }}
       </p>
-      <div class="card__price">{{ card.price }} руб.</div>
+      <div class="card__price">{{ card.formattedPrice }} руб.</div>
     </div>
     <main-button class="card__btn" @click="$emit('deleteCard')"></main-button>
   </li>

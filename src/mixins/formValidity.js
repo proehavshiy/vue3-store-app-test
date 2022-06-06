@@ -7,7 +7,6 @@ export default {
   },
   methods: {
     checkInputValidity(input) {
-      // const input = e.target;
       const formValidity = input.closest('form').checkValidity();
       const {
         validity: {

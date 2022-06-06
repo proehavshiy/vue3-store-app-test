@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid';
 import formValidity from '@/mixins/formValidity';
 
 export default {
@@ -71,6 +72,7 @@ export default {
         title: '',
         body: '',
         price: null,
+        formattedPrice: null,
         id: null,
       },
       placeHolder: {
@@ -89,7 +91,8 @@ export default {
   },
   methods: {
     submitForm() {
-      this.newCard.id = Date.now();
+      this.newCard.id = uuidv4();
+      this.newCard.formattedPrice = this.newCard.price.toLocaleString();
       this.$emit('createCard', this.newCard);
       this.newCard = {
         image: '',
