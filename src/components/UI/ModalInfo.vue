@@ -6,27 +6,11 @@
   </div>
 </template>
 <script>
+import toggleVisibility from '@/mixins/toggleVisibility';
 
 export default {
   name: 'modal-info',
-  props: {
-    visibility: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  watch: {
-    visibility() {
-      this.toggleVisibility();
-    },
-  },
-  methods: {
-    toggleVisibility() {
-      setTimeout(() => {
-        this.$emit('update:visibility', false);
-      }, 2000);
-    },
-  },
+  mixins: [toggleVisibility],
 };
 </script>
 
@@ -38,7 +22,7 @@ export default {
   top: -100%;
   right: 0;
 
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 
   &_visible {
     opacity: 1;
