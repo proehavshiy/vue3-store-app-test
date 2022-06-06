@@ -1,8 +1,7 @@
 <template>
   <textarea
     class="form__textarea"
-    name=""
-    id=""
+    name="area"
     cols="30"
     rows="10"
     aria-label="form-area"
@@ -11,7 +10,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'form-text-area',
   props: {
@@ -23,6 +21,7 @@ export default {
       changeInputValue(e) {
         // doesnt work with v-model
         this.$emit('update:modelValue', e.target.value);
+        this.$emit('validate', e.target);
       },
     },
   },

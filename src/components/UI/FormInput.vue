@@ -6,6 +6,7 @@
 
 export default {
   name: 'form-input',
+  emits: ['update:modelValue', 'validate'],
   props: {
     modelValue: {
       type: [String, Number, null],
@@ -14,8 +15,8 @@ export default {
   },
   methods: {
     changeInputValue(e) {
-      console.log('e.target.value:', e.target.value);
       this.$emit('update:modelValue', e.target.value);
+      this.$emit('validate', e.target);
     },
   },
 };
