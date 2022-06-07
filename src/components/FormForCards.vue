@@ -10,9 +10,11 @@
         required
         minLength="2"
       />
-      <span class="error" :class="{ error__active: errorMessage.title }">
-        {{ errorMessage.title }}
-      </span>
+      <transition name="fade">
+        <span class="error" v-show="errorMessage.title">
+          {{ errorMessage.title }}
+        </span>
+      </transition>
     </label>
     <label class="label">
       {{ label.body }}
@@ -34,9 +36,11 @@
         type="url"
         pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
       />
-      <span class="error" :class="{ error__active: errorMessage.image }">
-        {{ errorMessage.image }}
-      </span>
+      <transition name="fade">
+        <span class="error" v-show="errorMessage.image">
+          {{ errorMessage.image }}
+        </span>
+      </transition>
     </label>
     <label class="label">
       {{ label.price }}
@@ -51,9 +55,11 @@
         max="1000000"
         step="0.01"
       />
-      <span class="error" :class="{ error__active: errorMessage.price }">
-        {{ errorMessage.price }}
-      </span>
+      <transition name="fade">
+        <span class="error" v-show="errorMessage.price">
+          {{ errorMessage.price }}
+        </span>
+      </transition>
     </label>
     <main-button :disabled="!this.formValidity">Добавить товар</main-button>
   </form>
@@ -113,6 +119,8 @@ export default {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
+
+  position: relative;
 }
 
 input {
@@ -124,11 +132,27 @@ input {
   width: 100%;
   height: 20px;
   border: 1px solid red;
+  // visibility: hidden;
 
+  // opacity: 0;
+
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+
+  // &__active {
+  //   visibility: visible;
+  //   // opacity: 1;
+  // }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
-
-  &__active {
-    opacity: 1;
-  }
 }
 </style>
