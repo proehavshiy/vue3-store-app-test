@@ -1,9 +1,10 @@
 <template>
   <form class="form" @submit.prevent="submitForm" noValidate>
-    <fieldset>
+    <fieldset class="form__fieldset">
       <section class="form__section">
         <form-input
           class="form__input"
+          :class="{ form__input_invalid: errorMessage.title }"
           id="title"
           name="title"
           :placeholder="placeHolder.title"
@@ -16,14 +17,14 @@
           {{ label.title }}
         </label>
         <transition name="fade">
-          <div class="form__error" v-show="errorMessage.title">
+          <span class="form__error" v-show="errorMessage.title">
             {{ errorMessage.title }}
-          </div>
+          </span>
         </transition>
       </section>
       <section class="form__section">
         <form-text-area
-          class="form__input"
+          class="form__input form__input_textarea"
           id="body"
           name="body"
           :placeholder="placeHolder.body"
@@ -37,6 +38,7 @@
       <section class="form__section">
         <form-input
           class="form__input"
+          :class="{ form__input_invalid: errorMessage.image }"
           id="image"
           name="image"
           :placeholder="placeHolder.image"
@@ -58,6 +60,7 @@
       <section class="form__section">
         <form-input
           class="form__input"
+          :class="{ form__input_invalid: errorMessage.price }"
           id="price"
           name="price"
           :placeholder="placeHolder.price"
@@ -78,10 +81,10 @@
           </span>
         </transition>
       </section>
-      <main-button class="form__submit" :disabled="!this.formValidity">
-        Добавить товар
-      </main-button>
     </fieldset>
+    <main-button class="form__submit" :disabled="!this.formValidity">
+      Добавить товар
+    </main-button>
   </form>
 </template>
 
@@ -136,17 +139,31 @@ export default {
 
 <style lang="scss" scoped>
 .form {
+  // form__fieldset
+  &__fieldset {
+    margin-bottom: 24px;
+    padding: 0;
+  }
+
   // form__section
 
   &__section {
     display: flex;
     flex-direction: column;
     flex-direction: column-reverse;
+
+    position: relative;
+
+    &:not(:last-of-type) {
+      margin-bottom: 16px;
+    }
   }
 
   // .form__label
 
   &__label {
+    margin-bottom: 4px;
+
     align-self: flex-start;
     position: relative;
 
@@ -156,53 +173,41 @@ export default {
     line-height: 1.3;
     letter-spacing: -0.02em;
     color: $textColorMain;
-
-    // &::after {
-    //   content: "";
-
-    //   width: 4px;
-    //   height: 4px;
-
-    //   background: $accentColor;
-    //   border-radius: 4px;
-
-    //   position: absolute;
-    //   top: 0;
-    //   left: 100%;
-    // }
-
-    // & :has(input) {
-    //   color: red;
-    // }
-
-    // @at-root *:required {
-    //   background: red;
-    // }
-    // $selector: .form__label > *:required
-    // @if *:required {
-    //   background: red;
-    // }
-
-    // & + input[required] {
-    //   display: block;
-    //   width: 100px;
-    //   height: 100px;
-    //   background: red;
-    // }
-  }
-
-  // &__label:has(> input[required]) {
-  //   background: red;
-  // }
-
-  // form__required-label
-
-  &__required-label {
   }
 
   // .form__input
 
   &__input {
+    @include contentBlockPreset;
+    min-height: 36px;
+    padding: 10px 16px;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.25;
+
+    transition: $transition;
+
+    // .form__input_textarea
+
+    &_textarea {
+      min-height: 108px;
+    }
+
+    // .form__input_invalid
+
+    &_invalid {
+      outline: 2px solid $accentColor !important;
+    }
+
+    &::placeholder {
+      color: $textColorSecondary;
+    }
+    &:focus {
+      outline: 2px solid $textColorMain;
+    }
+
     // стилизуем label красной точкой, если инпут обязательный
     &:required ~ label::before {
       content: "";
@@ -221,10 +226,13 @@ export default {
   // .form__error
 
   &__error {
-    display: block;
-    width: 100%;
-    height: 20px;
-    border: 1px solid red;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+
+    color: $accentColor;
 
     position: absolute;
     top: calc(100% + 5px);
@@ -234,9 +242,27 @@ export default {
   // .form__submit
 
   &__submit {
+    padding: 10px;
+    min-height: 36px;
+    background: $submitColorActive;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.25;
+
+    color: $accentColorLight;
+
+    transition: $transition;
+
+    &:disabled {
+      background: $submitColorDisabled;
+      color: $textColorSecondary;
+    }
   }
 }
 
+// animations
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.4s ease;

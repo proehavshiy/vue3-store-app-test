@@ -26,8 +26,8 @@ export default {
       if (badInput) this.errorMessage[input.name] = 'Введено недопустимое значение';
       if (patternMismatch) this.errorMessage[input.name] = `Некорректный формат данных для ${input.type}`;
 
-      if (rangeOverflow) this.errorMessage[input.name] = `Значение должно быть более ${input.max}`;
-      if (rangeUnderflow) this.errorMessage[input.name] = `Значение должно быть менее ${input.min}`;
+      if (rangeOverflow) this.errorMessage[input.name] = `Значение должно быть менее ${input.max}`;
+      if (rangeUnderflow) this.errorMessage[input.name] = `Значение должно быть более ${input.min}`;
 
       if (valueMissing) this.errorMessage[input.name] = 'Поле является обязательным';
       if (tooShort) this.errorMessage[input.name] = `Значение менее ${input.minLength} симв.`;

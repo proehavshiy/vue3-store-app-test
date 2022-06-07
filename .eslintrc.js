@@ -13,12 +13,12 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    // 'vuejs-accessibility/form-control-has-label': [
-    //   'off',
-    //   {
-    //     labelComponents: ['CustomLabel'],
-    //   },
-    // ],
+    'vuejs-accessibility/form-control-has-label': [
+      'off',
+      {
+        labelComponents: ['CustomLabel'],
+      },
+    ],
     'vuejs-accessibility/label-has-for': [
       'error',
       {

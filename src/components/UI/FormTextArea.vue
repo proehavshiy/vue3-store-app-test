@@ -1,12 +1,5 @@
 <template>
-  <textarea
-    class="form__textarea"
-    name="area"
-    cols="30"
-    rows="10"
-    aria-label="form-area"
-    :value="modelValue"
-  ></textarea>
+  <textarea name="area" aria-label="form-area" :value="modelValue"></textarea>
 </template>
 
 <script>
@@ -28,9 +21,8 @@ export default {
 };
 </script>
 
-<style lang="scss">
-// @include contentBlockPreset;
-.form__textarea {
-  // border: 1px solid black;
+<style lang="scss" scoped>
+textarea {
+  resize: none;
 }
 </style>
