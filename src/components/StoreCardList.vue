@@ -1,11 +1,13 @@
 <template>
   <ul class="cards-wrapper">
-    <store-card
-      v-for="card in cards"
-      :key="card.id"
-      :card="card"
-      @deleteCard="$emit('deleteCard', card.id)"
-    />
+    <transition-group name="card">
+      <store-card
+        v-for="card in cards"
+        :key="card.id"
+        :card="card"
+        @deleteCard="$emit('deleteCard', card.id)"
+      />
+    </transition-group>
   </ul>
 </template>
 
@@ -31,5 +33,21 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 16px;
+}
+.card-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.card-enter-active,
+.card-leave-active {
+  transition: all 0.4s ease;
+}
+.card-enter,
+.card-enter-from,
+.card-leave-to {
+  opacity: 0;
+}
+.card-move {
+  transition: all 0.4s ease;
 }
 </style>
