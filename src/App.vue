@@ -42,8 +42,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/styles";
-
 .main {
   padding: 32px;
   display: grid;
