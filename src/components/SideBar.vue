@@ -1,8 +1,10 @@
 <template>
-  <section>
-    <section-heading>Добавление товара</section-heading>
-    <form-for-cards @createCard="handleCreateCard" />
-  </section>
+  <aside class="side-bar">
+    <section-heading class="side-bar__heading">
+      Добавление товара
+    </section-heading>
+    <form-for-cards class="side-bar__form" @createCard="handleCreateCard" />
+  </aside>
 </template>
 
 <script>
@@ -28,5 +30,20 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.side-bar {
+  min-width: 332px;
+  // .side-bar__heading
+
+  &__heading {
+    margin-bottom: 16px;
+  }
+
+  // .side-bar__form
+
+  &__form {
+    padding: 24px;
+    @include contentBlockPreset;
+  }
+}
 </style>

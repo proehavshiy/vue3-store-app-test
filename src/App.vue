@@ -45,7 +45,7 @@ export default {
 .main {
   padding: 32px;
   display: grid;
-  grid-template-columns: 332px 1fr;
+  grid-template-columns: auto 1fr;
   grid-gap: 16px;
 }
 </style>

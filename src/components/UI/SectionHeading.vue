@@ -1,5 +1,5 @@
 <template>
-  <h1><slot></slot></h1>
+  <h1 class="section-heading"><slot></slot></h1>
 </template>
 
 <script>
@@ -9,5 +9,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.section-heading {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.25;
+  color: $textColorMain;
+}
 </style>
