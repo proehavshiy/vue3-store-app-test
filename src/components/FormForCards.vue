@@ -1,67 +1,87 @@
 <template>
-  <form @submit.prevent="submitForm" noValidate>
-    <label class="label">
-      {{ label.title }}
-      <form-input
-        name="title"
-        :placeholder="placeHolder.title"
-        v-model.trim="newCard.title"
-        @validate="checkInputValidity"
-        required
-        minLength="2"
-      />
-      <transition name="fade">
-        <span class="error" v-show="errorMessage.title">
-          {{ errorMessage.title }}
-        </span>
-      </transition>
-    </label>
-    <label class="label">
-      {{ label.body }}
-      <form-text-area
-        name="body"
-        :placeholder="placeHolder.body"
-        :model-value="newCard.body"
-        @input="newCard.body = $event.target.value.trim()"
-      />
-    </label>
-    <label class="label">
-      {{ label.image }}
-      <form-input
-        name="image"
-        :placeholder="placeHolder.image"
-        v-model.trim="newCard.image"
-        @validate="checkInputValidity"
-        required
-        type="url"
-        pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
-      />
-      <transition name="fade">
-        <span class="error" v-show="errorMessage.image">
-          {{ errorMessage.image }}
-        </span>
-      </transition>
-    </label>
-    <label class="label">
-      {{ label.price }}
-      <form-input
-        name="price"
-        :placeholder="placeHolder.price"
-        v-model.trim.number="newCard.price"
-        @validate="checkInputValidity"
-        required
-        type="number"
-        min="990"
-        max="1000000"
-        step="0.01"
-      />
-      <transition name="fade">
-        <span class="error" v-show="errorMessage.price">
-          {{ errorMessage.price }}
-        </span>
-      </transition>
-    </label>
-    <main-button :disabled="!this.formValidity">Добавить товар</main-button>
+  <form class="form" @submit.prevent="submitForm" noValidate>
+    <fieldset>
+      <section class="form__section">
+        <form-input
+          class="form__input"
+          id="title"
+          name="title"
+          :placeholder="placeHolder.title"
+          v-model.trim="newCard.title"
+          @validate="checkInputValidity"
+          required
+          minLength="2"
+        />
+        <label class="form__label" for="title">
+          {{ label.title }}
+        </label>
+        <transition name="fade">
+          <div class="form__error" v-show="errorMessage.title">
+            {{ errorMessage.title }}
+          </div>
+        </transition>
+      </section>
+      <section class="form__section">
+        <form-text-area
+          class="form__input"
+          id="body"
+          name="body"
+          :placeholder="placeHolder.body"
+          :model-value="newCard.body"
+          @input="newCard.body = $event.target.value.trim()"
+        />
+        <label class="form__label" for="body">
+          {{ label.body }}
+        </label>
+      </section>
+      <section class="form__section">
+        <form-input
+          class="form__input"
+          id="image"
+          name="image"
+          :placeholder="placeHolder.image"
+          v-model.trim="newCard.image"
+          @validate="checkInputValidity"
+          required
+          type="url"
+          pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
+        />
+        <label class="form__label" for="image">
+          {{ label.image }}
+        </label>
+        <transition name="fade">
+          <span class="form__error" v-show="errorMessage.image">
+            {{ errorMessage.image }}
+          </span>
+        </transition>
+      </section>
+      <section class="form__section">
+        <form-input
+          class="form__input"
+          id="price"
+          name="price"
+          :placeholder="placeHolder.price"
+          v-model.trim.number="newCard.price"
+          @validate="checkInputValidity"
+          required
+          type="number"
+          min="990"
+          max="1000000"
+          step="0.01"
+        />
+        <label class="form__label" for="price">
+          {{ label.price }}
+        </label>
+        <transition name="fade">
+          <span class="form__error" v-show="errorMessage.price">
+            {{ errorMessage.price }}
+          </span>
+        </transition>
+      </section>
+      <main-button class="form__submit" :disabled="!this.formValidity">
+        Добавить товар
+      </main-button>
+    </fieldset>
   </form>
 </template>
 
@@ -114,36 +134,107 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.label {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
+<style lang="scss" scoped>
+.form {
+  // form__section
 
-  position: relative;
-}
+  &__section {
+    display: flex;
+    flex-direction: column;
+    flex-direction: column-reverse;
+  }
 
-input {
-  border: 1px solid black;
-}
+  // .form__label
 
-.error {
-  display: block;
-  width: 100%;
-  height: 20px;
-  border: 1px solid red;
-  // visibility: hidden;
+  &__label {
+    align-self: flex-start;
+    position: relative;
 
-  // opacity: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: $textColorMain;
 
-  position: absolute;
-  top: calc(100% + 5px);
-  left: 0;
+    // &::after {
+    //   content: "";
 
-  // &__active {
-  //   visibility: visible;
-  //   // opacity: 1;
+    //   width: 4px;
+    //   height: 4px;
+
+    //   background: $accentColor;
+    //   border-radius: 4px;
+
+    //   position: absolute;
+    //   top: 0;
+    //   left: 100%;
+    // }
+
+    // & :has(input) {
+    //   color: red;
+    // }
+
+    // @at-root *:required {
+    //   background: red;
+    // }
+    // $selector: .form__label > *:required
+    // @if *:required {
+    //   background: red;
+    // }
+
+    // & + input[required] {
+    //   display: block;
+    //   width: 100px;
+    //   height: 100px;
+    //   background: red;
+    // }
+  }
+
+  // &__label:has(> input[required]) {
+  //   background: red;
   // }
+
+  // form__required-label
+
+  &__required-label {
+  }
+
+  // .form__input
+
+  &__input {
+    // стилизуем label красной точкой, если инпут обязательный
+    &:required ~ label::before {
+      content: "";
+      width: 4px;
+      height: 4px;
+
+      background: $accentColor;
+      border-radius: 4px;
+
+      position: absolute;
+      top: 0;
+      left: 100%;
+    }
+  }
+
+  // .form__error
+
+  &__error {
+    display: block;
+    width: 100%;
+    height: 20px;
+    border: 1px solid red;
+
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+  }
+
+  // .form__submit
+
+  &__submit {
+  }
 }
 
 .fade-enter-active,
