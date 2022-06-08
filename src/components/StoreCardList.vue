@@ -31,8 +31,12 @@ export default {
 <style lang="scss" scoped>
 .cards-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 332px);
+  grid-template-columns: repeat(auto-fit, minmax(332px, 1fr));
   grid-gap: 16px;
+
+  @media (max-width: $b1440) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 }
 .card-item {
   display: inline-block;

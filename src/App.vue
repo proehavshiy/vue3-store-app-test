@@ -47,5 +47,15 @@ export default {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 16px;
+  // grid-template-columns: repeat(auto-fit, minmax(332px, 1fr));
+  grid-gap: 16px;
+
+  position: relative;
+
+  @media (max-width: $b480) {
+    padding: 10px;
+    // grid-template-columns: 1fr;
+    // grid-template-rows: auto 1fr;
+  }
 }
 </style>

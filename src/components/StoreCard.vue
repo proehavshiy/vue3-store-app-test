@@ -29,10 +29,12 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .card {
   @include contentBlockPreset;
-  max-width: 332px;
+  // max-width: 332px;
+  // max-width: 50%;
+  // min-width: 200px;
   position: relative;
 
   &:hover .card__btn {
