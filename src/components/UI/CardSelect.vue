@@ -8,18 +8,20 @@
       {{ modelValue.name }}
       <span></span>
     </p>
-    <ul class="select__options" v-show="areOptionsVisible">
-      <li
-        class="select__option"
-        v-for="option in options.filter(
-          (option) => option.value !== modelValue.value
-        )"
-        :key="option.value"
-        @click="selectOption(option)"
-      >
-        {{ option.name }}
-      </li>
-    </ul>
+    <transition name="fade">
+      <ul class="select__options" v-show="areOptionsVisible">
+        <li
+          class="select__option"
+          v-for="option in options.filter(
+            (option) => option.value !== modelValue.value
+          )"
+          :key="option.value"
+          @click="selectOption(option)"
+        >
+          {{ option.name }}
+        </li>
+      </ul>
+    </transition>
   </div>
 </template>
 
@@ -135,6 +137,17 @@ export default {
     &:hover {
       background: $bgColor;
     }
+  }
+
+  // transitions
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.2s linear;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
   }
 }
 </style>
