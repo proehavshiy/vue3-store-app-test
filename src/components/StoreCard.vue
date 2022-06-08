@@ -4,8 +4,10 @@
       <img :src="card.image" alt="card image" class="card__img" />
     </div>
     <div class="card__content">
-      <h3 class="card__heading">{{ card.title }}</h3>
-      <p class="card__text">
+      <h3 class="card__heading" :title="card.title">
+        {{ card.title }}
+      </h3>
+      <p class="card__text" :title="card.body">
         {{ card.body }}
       </p>
       <div class="card__price">{{ card.formattedPrice }} руб.</div>
