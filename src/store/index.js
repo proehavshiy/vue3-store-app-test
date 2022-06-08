@@ -63,16 +63,17 @@ export default createStore({
       },
     ],
     sortOptions: [
+      { value: 'default', name: 'по умолчанию' },
       { value: 'max', name: 'цена max' },
       { value: 'min', name: 'цена min' },
       { value: 'title', name: 'по названию' },
     ],
-    selectedSort: '',
+    selectedSort: { value: 'default', name: 'по умолчанию' },
   }),
   getters: {
     sortCards(state) {
       return [...state.cards].sort((card1, card2) => {
-        switch (state.selectedSort) {
+        switch (state.selectedSort.value) {
           case 'max':
             return card2.price - card1.price;
           case 'min':

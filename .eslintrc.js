@@ -19,6 +19,7 @@ module.exports = {
         labelComponents: ['CustomLabel'],
       },
     ],
+    'vuejs-accessibility/click-events-have-key-events': 'off',
     'vuejs-accessibility/label-has-for': [
       'error',
       {
