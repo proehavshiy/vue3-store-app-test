@@ -53,14 +53,16 @@ export default {
   &__img {
     margin: auto;
     display: block;
-    width: 80%;
-    height: 80%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 
-    transition: transform 0.4s cubic-bezier(0.6, 0, 0.5, 1);
+    transition: transform 0.4s cubic-bezier(0.6, 0, 0.5, 1),
+      object-fit 0.4s cubic-bezier(0.6, 0, 0.5, 1);
 
     &:hover {
-      transform: scale(120%);
+      object-fit: contain;
+      transform: scale(80%);
     }
   }
 
