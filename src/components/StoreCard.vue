@@ -49,6 +49,11 @@ export default {
     overflow: hidden;
 
     cursor: pointer;
+
+    &:hover > img {
+      object-fit: contain;
+      transform: scale(80%);
+    }
   }
   // .card__img
 
@@ -61,11 +66,6 @@ export default {
 
     transition: transform 0.4s cubic-bezier(0.6, 0, 0.5, 1),
       object-fit 0.4s cubic-bezier(0.6, 0, 0.5, 1);
-
-    &:hover {
-      object-fit: contain;
-      transform: scale(80%);
-    }
   }
 
   // .card__content
