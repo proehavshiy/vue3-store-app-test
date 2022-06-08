@@ -107,6 +107,10 @@ export default {
   &__price {
     font-weight: 600;
     font-size: 24px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   // card__btn
