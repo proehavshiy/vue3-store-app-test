@@ -23,6 +23,7 @@ export default {
   right: 0;
 
   transition: all 0.4s ease;
+  z-index: 999;
 
   &_visible {
     opacity: 1;
@@ -39,9 +40,9 @@ export default {
     justify-content: flex-end;
 
     padding: 10px;
-    background: green;
+    background: $submitColorActive;
+    color: $accentColorLight;
     border-radius: 10px;
-    opacity: 0.6;
 
     position: relative;
     top: 20px;
