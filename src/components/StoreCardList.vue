@@ -31,7 +31,7 @@ export default {
 <style lang="scss" scoped>
 .cards-wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 332px);
   grid-gap: 16px;
 }
 .card-item {
