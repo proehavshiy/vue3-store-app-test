@@ -1,6 +1,8 @@
 <template>
   <li class="card">
-    <img :src="card.image" alt="card image" class="card__img" />
+    <div class="card__img-wrapper">
+      <img :src="card.image" alt="card image" class="card__img" />
+    </div>
     <div class="card__content">
       <h3 class="card__heading">{{ card.title }}</h3>
       <p class="card__text">
@@ -35,13 +37,31 @@ export default {
     opacity: 1;
   }
 
+  // card__img-wrapper
+
+  &__img-wrapper {
+    display: flex;
+
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+
+    cursor: pointer;
+  }
   // .card__img
 
   &__img {
+    margin: auto;
     display: block;
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+
+    transition: transform 0.4s cubic-bezier(0.6, 0, 0.5, 1);
+
+    &:hover {
+      transform: scale(120%);
+    }
   }
 
   // .card__content
