@@ -1,11 +1,12 @@
 <template>
   <section class="main-content">
-    <card-select
-      :model-value="selectedSort"
-      @update:model-value="setSelectedSort"
-      :options="sortOptions"
-      style="align-self: flex-end"
-    />
+    <div class="main-content__control-bar">
+      <card-select
+        :model-value="selectedSort"
+        @update:model-value="setSelectedSort"
+        :options="sortOptions"
+      />
+    </div>
     <store-card-list :cards="sortedCards" @deleteCard="handleDeleteCard" />
   </section>
 </template>
@@ -19,7 +20,6 @@ export default {
   components: { StoreCardList },
   computed: {
     ...mapState({
-      // cards: (state) => state.cards,
       sortOptions: (state) => state.sortOptions,
       selectedSort: (state) => state.selectedSort,
     }),
@@ -40,22 +40,22 @@ export default {
       this.deleteCard(card);
       this.$emit('deleteCard', 'deleteCard');
     },
-    // deleteCard(id) {
-    //   console.log('id:', id);
-    // },
-    // ...mapMutations({
-    //   setPage: "post/setPage",
-    //   setSearchQuery: "post/setSearchQuery",
-    //   setSelectedSort: "post/setSelectedSort",
-    // }),
   },
 };
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .main-content {
   display: flex;
   flex-direction: column;
+
+  // .main-content__control-bar
+
+  &__control-bar {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: flex-end;
+  }
 }
 </style>
