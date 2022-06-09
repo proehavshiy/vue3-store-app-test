@@ -13,7 +13,7 @@ export default {
 <style lang="scss" scoped>
 .cards-substitute {
   width: 100%;
-  height: 100%;
+  height: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,10 @@ export default {
   font-size: 32px;
   line-height: 1.25px;
 
-  text-align: center;
   color: $textColorSecondary;
+
+  @media (max-width: $b768) {
+    font-size: 24px;
+  }
 }
 </style>
