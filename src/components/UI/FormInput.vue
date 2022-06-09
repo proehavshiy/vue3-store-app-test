@@ -18,6 +18,13 @@ export default {
       this.$emit('update:modelValue', e.target.value);
       this.$emit('validate', e.target);
     },
+    applyMaskForPrice(num) {
+      let formattedNum = num.toString();
+      formattedNum = formattedNum.replace(/\D/g, '');
+      formattedNum = formattedNum.replace(/(\d)(\d{3})$/, '$1 $2');
+      formattedNum = formattedNum.replace(/(?=(\d{3})+(\D))\B/g, ' ');
+      return formattedNum;
+    },
   },
 };
 </script>

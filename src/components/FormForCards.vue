@@ -64,13 +64,11 @@
           id="price"
           name="price"
           :placeholder="placeHolder.price"
-          v-model.trim.number="newCard.price"
+          v-model="newCard.formattedPrice"
           @validate="checkInputValidity"
           required
-          type="number"
-          min="990"
-          max="1000000"
-          step="0.01"
+          type="text"
+          pattern="^[0-9 ]+$"
         />
         <label class="form__label" for="price">
           {{ label.price }}
@@ -102,8 +100,7 @@ export default {
         title: '',
         body: '',
         price: null,
-        formattedPrice: null,
-        id: null,
+        formattedPrice: '',
       },
       placeHolder: {
         image: 'Введите ссылку',
@@ -119,19 +116,35 @@ export default {
       },
     };
   },
+  watch: {
+    newCard: {
+      handler(el) {
+        this.newCard.formattedPrice = this.applyMaskForPrice(el.formattedPrice);
+        this.newCard.price = Number(el.formattedPrice.replace(/\s+/g, ''));
+      },
+      deep: true,
+    },
+  },
   methods: {
     submitForm() {
       this.newCard.id = uuidv4();
-      this.newCard.formattedPrice = this.newCard.price.toLocaleString();
       this.$emit('createCard', this.newCard);
       this.newCard = {
         image: '',
         title: '',
         body: '',
         price: null,
+        formattedPrice: '',
       };
 
       if (this.formValidity) this.formValidity = false;
+    },
+    applyMaskForPrice(num) {
+      let formattedNum = num.toString();
+      formattedNum = formattedNum.replace(/\D/g, '');
+      formattedNum = formattedNum.replace(/(\d)(\d{3})$/, '$1 $2');
+      formattedNum = formattedNum.replace(/(?=(\d{3})+(\D))\B/g, ' ');
+      return formattedNum;
     },
   },
 };

@@ -24,7 +24,7 @@ export default {
       } = input;
 
       if (badInput) this.errorMessage[input.name] = 'Введено недопустимое значение';
-      if (patternMismatch) this.errorMessage[input.name] = `Некорректный формат данных для ${input.type}`;
+      if (patternMismatch) this.errorMessage[input.name] = 'Некорректный формат данных';
 
       if (rangeOverflow) this.errorMessage[input.name] = `Значение должно быть менее ${input.max}`;
       if (rangeUnderflow) this.errorMessage[input.name] = `Значение должно быть более ${input.min}`;
