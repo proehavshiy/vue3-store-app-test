@@ -1,5 +1,5 @@
 <template>
-  <ul class="cards-wrapper">
+  <ul class="cards" v-if="cards.length > 0">
     <transition-group name="card">
       <store-card
         v-for="card in cards"
@@ -9,6 +9,7 @@
       />
     </transition-group>
   </ul>
+  <cards-substitute v-else>список товаров пуст</cards-substitute>
 </template>
 
 <script>
@@ -29,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.cards-wrapper {
+.cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(332px, 1fr));
   grid-gap: 16px;
@@ -38,6 +39,8 @@ export default {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }
+
+// transitions
 .card-item {
   display: inline-block;
   margin-right: 10px;
