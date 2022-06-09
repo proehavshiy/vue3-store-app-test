@@ -13,6 +13,12 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-unused-expressions': [
+      'error',
+      {
+        allowTernary: true,
+      },
+    ],
     'vuejs-accessibility/form-control-has-label': [
       'off',
       {

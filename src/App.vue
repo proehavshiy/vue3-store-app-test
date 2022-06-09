@@ -1,7 +1,7 @@
 <template>
-  <main class="main">
-    <side-bar @createCard="showModalInfo"></side-bar>
-    <main-content @deleteCard="showModalInfo"></main-content>
+  <main class="main" :class="{ main_collapsed: !gridColumns }">
+    <side-bar @createCard="showModalInfo" @toggleGrid="toggleGrid" />
+    <main-content @deleteCard="showModalInfo" />
     <modal-info v-model:visibility="modalStatus">
       <div>{{ this.modalPhrase }}</div>
     </modal-info>
@@ -21,6 +21,7 @@ export default {
     return {
       modalStatus: false,
       modalPhrase: '',
+      gridColumns: true,
     };
   },
   methods: {
@@ -33,9 +34,20 @@ export default {
           this.modalPhrase = 'Товар успешно добавлен!';
           break;
         default:
-          this.modalPhrase = 'hello';
+          this.modalPhrase = 'Событие произошло';
       }
       this.modalStatus = true;
+    },
+    toggleGrid() {
+      this.gridColumns
+        ? this.gridColumns = !this.gridColumns
+        : (
+        // задержка нужна, чтобы карточки не "прыгали вверх" рвано на свое прежнее место
+        // после сворачивания aside с формой при экране < 768
+          setTimeout(() => {
+            this.gridColumns = !this.gridColumns;
+          }, 500)
+        );
     },
   },
 };
@@ -47,15 +59,16 @@ export default {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-gap: 16px;
-  // grid-template-columns: repeat(auto-fit, minmax(332px, 1fr));
-  grid-gap: 16px;
-
   position: relative;
 
-  @media (max-width: $b480) {
-    padding: 10px;
-    // grid-template-columns: 1fr;
-    // grid-template-rows: auto 1fr;
+  @media (max-width: $b768) {
+    grid-gap: 16px 0;
+  }
+
+  // main_collapsed
+  &_collapsed {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
   }
 }
 </style>

@@ -34,19 +34,26 @@ export default {
     }),
     handleCreateCard(card) {
       this.addCard(card);
+      this.toggleAsideBar(false);
       this.$emit('createCard', 'createCard');
     },
+    // сворачивание/раскрытие aside
     toggleAsideBar(e) {
-      console.log('hhh:', e.type);
+      const documentWidth = document.documentElement.clientWidth;
       if (e.type === 'resize' || e.type === 'DOMContentLoaded') {
-        console.log('inside:', e.type);
-        console.log('e:', e);
-        console.log('width:', e.target.innerWidth);
-        if (e.target.innerWidth <= 1024) this.isAsideBarHide = true;
-        // if (e.target.innerWidth > 1024) this.isAsideBarHide = false;
+        // изначальные положения aside в зависимости от текущего разрешения
+        documentWidth <= 1024
+          ? this.isAsideBarHide = true
+          : this.isAsideBarHide = false;
       } else {
-        console.log('else:');
+        // для вызова функции не по кнопке, а при сабмите формы
+        // чтобы aside скрывался автоматически при размере экрана менее 1024
+        if (documentWidth >= 1024) return;
+        // просто клик по кнопке: скрывает/открывает aside
         this.isAsideBarHide = !this.isAsideBarHide;
+        // на малых разрешениях допом эмитится эвент переключения грид-сетки в 1 колонку,
+        // чтобы карточки уходили под aside
+        if (documentWidth <= 768) this.$emit('toggleGrid');
       }
     },
   },
@@ -68,22 +75,24 @@ export default {
   top: 0;
   left: 0;
   transition: all 0.5s;
+
   @media (max-width: $b768) {
-    width: 300px;
+    width: 100%;
+    z-index: 888;
   }
 
   // плавность открытия контента
+  // иначе будет некрасиво бликовать
   & > .side-bar__content {
     opacity: 1;
     transition: all 0.5s linear 0.3s;
   }
 
   &_closed {
-    min-width: 0;
     width: 0;
-    padding-right: 10px;
 
     // плавность скрытия контента
+    // иначе будет некрасиво бликовать
     & > .side-bar__content {
       opacity: 0;
       transition: all 0.1s ease;
