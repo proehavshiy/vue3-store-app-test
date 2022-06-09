@@ -32,10 +32,12 @@ export default {
 <style lang="scss" scoped>
 .card {
   @include contentBlockPreset;
-  // max-width: 332px;
-  // max-width: 50%;
-  // min-width: 200px;
+  max-width: 420px;
   position: relative;
+
+  @media (max-width: $b768) {
+    max-width: 100%;
+  }
 
   &:hover .card__btn {
     opacity: 1;
