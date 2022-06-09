@@ -7,7 +7,12 @@
         :options="sortOptions"
       />
     </div>
-    <store-card-list :cards="sortedCards" @deleteCard="handleDeleteCard" />
+    <store-card-list
+      v-if="!isPostsLoading"
+      :cards="sortedCards"
+      @deleteCard="handleDeleteCard"
+    />
+    <cards-preloader v-else>Загрузка товаров...</cards-preloader>
   </section>
 </template>
 
@@ -18,23 +23,29 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
 export default {
   name: 'main-content',
   components: { StoreCardList },
+  mounted() {
+    // мок подгрузки списка товаров
+    this.setLoading(true);
+    const mockFetchingData = () => {
+      setTimeout(() => this.setLoading(false), 2000);
+    };
+    mockFetchingData();
+  },
   computed: {
     ...mapState({
       sortOptions: (state) => state.sortOptions,
       selectedSort: (state) => state.selectedSort,
+      isPostsLoading: (state) => state.isPostsLoading,
     }),
     ...mapGetters({
       sortedCards: 'sortCards',
     }),
   },
-  data() {
-    return {
-    };
-  },
   methods: {
     ...mapMutations({
       setSelectedSort: 'setSelectedSort',
       deleteCard: 'deleteCard',
+      setLoading: 'setLoading',
     }),
     handleDeleteCard(card) {
       this.deleteCard(card);

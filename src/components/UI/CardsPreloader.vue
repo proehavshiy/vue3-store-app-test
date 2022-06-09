@@ -1,17 +1,17 @@
 <template>
-  <div class="cards-substitute">
+  <div class="preloader">
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'cards-substitute',
+  name: 'cards-preloader',
 };
 </script>
 
 <style lang="scss" scoped>
-.cards-substitute {
+.preloader {
   width: 100%;
   height: 50%;
   display: flex;

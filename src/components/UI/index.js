@@ -4,7 +4,7 @@ import FormInput from './FormInput.vue';
 import FormTextArea from './FormTextArea.vue';
 import SectionHeading from './SectionHeading.vue';
 import ModalInfo from './ModalInfo.vue';
-import CardsSubstitute from './CardsSubstitute.vue';
+import CardsPreloader from './CardsPreloader.vue';
 
 export default [
   CardSelect,
@@ -13,5 +13,5 @@ export default [
   FormTextArea,
   SectionHeading,
   ModalInfo,
-  CardsSubstitute,
+  CardsPreloader,
 ];

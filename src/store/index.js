@@ -69,6 +69,7 @@ export default createStore({
       { value: 'title', name: 'по названию' },
     ],
     selectedSort: { value: 'default', name: 'по умолчанию' },
+    isPostsLoading: false,
   }),
   getters: {
     sortCards(state) {
@@ -95,6 +96,9 @@ export default createStore({
     },
     deleteCard(state, id) {
       state.cards = state.cards.filter((card) => card.id !== id);
+    },
+    setLoading(state, bool) {
+      state.isPostsLoading = bool;
     },
   },
   actions: {

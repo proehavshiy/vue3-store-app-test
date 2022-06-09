@@ -9,7 +9,7 @@
       />
     </transition-group>
   </ul>
-  <cards-substitute v-else>список товаров пуст</cards-substitute>
+  <cards-preloader v-else>список товаров пуст</cards-preloader>
 </template>
 
 <script>
