@@ -42,5 +42,12 @@ export default {
       if (valid) this.errorMessage[input.name] = '';
       this.formValidity = formValidity;
     },
+    applyMaskForPrice(num) {
+      let formattedString = num.toString();
+      formattedString = formattedString.replace(/\D/g, '');
+      formattedString = formattedString.replace(/(\d)(\d{3})$/, '$1 $2');
+      formattedString = formattedString.replace(/(?=(\d{3})+(\D))\B/g, ' ');
+      return formattedString;
+    },
   },
 };

@@ -118,9 +118,14 @@ export default {
   },
   watch: {
     newCard: {
-      handler(el) {
-        this.newCard.formattedPrice = this.applyMaskForPrice(el.formattedPrice);
-        this.newCard.price = Number(el.formattedPrice.replace(/\s+/g, ''));
+      // при вводе цены применяется маска
+      // и парсится цена в числах без пробелов
+      handler(dataFromInputs) {
+        const { formattedPrice } = dataFromInputs;
+        if (formattedPrice) {
+          this.newCard.formattedPrice = this.applyMaskForPrice(formattedPrice);
+          this.newCard.price = Number(this.newCard.formattedPrice.replace(/\s+/g, ''));
+        }
       },
       deep: true,
     },
@@ -138,13 +143,6 @@ export default {
       };
 
       if (this.formValidity) this.formValidity = false;
-    },
-    applyMaskForPrice(num) {
-      let formattedNum = num.toString();
-      formattedNum = formattedNum.replace(/\D/g, '');
-      formattedNum = formattedNum.replace(/(\d)(\d{3})$/, '$1 $2');
-      formattedNum = formattedNum.replace(/(?=(\d{3})+(\D))\B/g, ' ');
-      return formattedNum;
     },
   },
 };
