@@ -16,11 +16,9 @@
         <label class="form__label" for="title">
           {{ label.title }}
         </label>
-        <transition name="fade">
-          <span class="form__error" v-show="errorMessage.title">
-            {{ errorMessage.title }}
-          </span>
-        </transition>
+        <error-message v-show="errorMessage.title">
+          {{ errorMessage.title }}
+        </error-message>
       </section>
       <section class="form__section">
         <form-text-area
@@ -51,11 +49,9 @@
         <label class="form__label" for="image">
           {{ label.image }}
         </label>
-        <transition name="fade">
-          <span class="form__error" v-show="errorMessage.image">
-            {{ errorMessage.image }}
-          </span>
-        </transition>
+        <error-message v-show="errorMessage.image">
+          {{ errorMessage.image }}
+        </error-message>
       </section>
       <section class="form__section">
         <form-input
@@ -73,11 +69,9 @@
         <label class="form__label" for="price">
           {{ label.price }}
         </label>
-        <transition name="fade">
-          <span class="form__error" v-show="errorMessage.price">
-            {{ errorMessage.price }}
-          </span>
-        </transition>
+        <error-message v-show="errorMessage.price">
+          {{ errorMessage.price }}
+        </error-message>
       </section>
     </fieldset>
     <main-button class="form__submit" :disabled="!this.formValidity">
@@ -89,8 +83,10 @@
 <script>
 import { v4 as uuidv4 } from 'uuid';
 import formValidity from '@/mixins/formValidity';
+import errorMessage from './UI/errorMessage.vue';
 
 export default {
+  components: { errorMessage },
   name: 'form-for-cards',
   mixins: [formValidity],
   data() {
@@ -228,19 +224,6 @@ export default {
     }
   }
 
-  // .form__error
-
-  &__error {
-    font-size: 8px;
-    letter-spacing: -0.02em;
-
-    color: $accentColor;
-
-    position: absolute;
-    top: calc(100% + 5px);
-    left: 0;
-  }
-
   // .form__submit
 
   &__submit {
@@ -261,7 +244,4 @@ export default {
     }
   }
 }
-
-// animations
-@include vueFade(0.4);
 </style>
