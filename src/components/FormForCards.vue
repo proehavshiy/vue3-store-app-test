@@ -1,7 +1,12 @@
 <template>
   <form class="form" @submit.prevent="submitForm" noValidate>
     <fieldset class="form__fieldset">
-      <section class="form__section">
+      <form-section
+        class="form__section"
+        :labelFor="'title'"
+        :title="label.title"
+        :errorMessage="errorMessage.title"
+      >
         <form-input
           class="form__input"
           :class="{ form__input_invalid: errorMessage.title }"
@@ -13,14 +18,13 @@
           required
           minLength="2"
         />
-        <label class="form__label" for="title">
-          {{ label.title }}
-        </label>
-        <error-message v-show="errorMessage.title">
-          {{ errorMessage.title }}
-        </error-message>
-      </section>
-      <section class="form__section">
+      </form-section>
+      <form-section
+        class="form__section"
+        :labelFor="'body'"
+        :title="label.body"
+        :errorMessage="''"
+      >
         <form-text-area
           class="form__input form__input_textarea"
           id="body"
@@ -29,11 +33,13 @@
           :model-value="newCard.body"
           @input="newCard.body = $event.target.value.trim()"
         />
-        <label class="form__label" for="body">
-          {{ label.body }}
-        </label>
-      </section>
-      <section class="form__section">
+      </form-section>
+      <form-section
+        class="form__section"
+        :labelFor="'image'"
+        :title="label.image"
+        :errorMessage="errorMessage.image"
+      >
         <form-input
           class="form__input"
           :class="{ form__input_invalid: errorMessage.image }"
@@ -46,14 +52,13 @@
           type="url"
           pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
         />
-        <label class="form__label" for="image">
-          {{ label.image }}
-        </label>
-        <error-message v-show="errorMessage.image">
-          {{ errorMessage.image }}
-        </error-message>
-      </section>
-      <section class="form__section">
+      </form-section>
+      <form-section
+        class="form__section"
+        :labelFor="'price'"
+        :title="label.price"
+        :errorMessage="errorMessage.price"
+      >
         <form-input
           class="form__input"
           :class="{ form__input_invalid: errorMessage.price }"
@@ -66,13 +71,7 @@
           type="text"
           pattern="^[0-9 ]+$"
         />
-        <label class="form__label" for="price">
-          {{ label.price }}
-        </label>
-        <error-message v-show="errorMessage.price">
-          {{ errorMessage.price }}
-        </error-message>
-      </section>
+      </form-section>
     </fieldset>
     <main-button class="form__submit" :disabled="!this.formValidity">
       Добавить товар
@@ -83,10 +82,10 @@
 <script>
 import { v4 as uuidv4 } from 'uuid';
 import formValidity from '@/mixins/formValidity';
-import errorMessage from './UI/errorMessage.vue';
+import FormSection from './UI/FormSection.vue';
 
 export default {
-  components: { errorMessage },
+  components: { FormSection },
   name: 'form-for-cards',
   mixins: [formValidity],
   data() {
@@ -164,20 +163,6 @@ export default {
     &:not(:last-of-type) {
       margin-bottom: 16px;
     }
-  }
-
-  // .form__label
-
-  &__label {
-    margin-bottom: 4px;
-
-    align-self: flex-start;
-    position: relative;
-
-    font-size: 10px;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
-    color: $textColorMain;
   }
 
   // .form__input
