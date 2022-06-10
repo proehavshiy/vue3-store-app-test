@@ -11,10 +11,8 @@ export default {
 
 <style lang="scss" scoped>
 .section-heading {
-  font-style: normal;
   font-weight: 600;
   font-size: 28px;
-  line-height: 1.25;
   color: $textColorMain;
 }
 </style>

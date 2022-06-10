@@ -7,3 +7,32 @@
   display: flex;
   flex-direction: column;
 }
+
+@mixin standartFlex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin vueFade($duration) {
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity #{$duration+s} linear;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
+}
+
+@mixin extraTextHidden {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin standartTransition($duration) {
+  transition: all #{$duration+s} ease;
+}

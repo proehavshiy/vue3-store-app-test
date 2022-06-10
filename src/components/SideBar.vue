@@ -95,7 +95,7 @@ export default {
     // иначе будет некрасиво бликовать
     & > .side-bar__content {
       opacity: 0;
-      transition: all 0.1s ease;
+      @include standartTransition(0.1);
     }
   }
 

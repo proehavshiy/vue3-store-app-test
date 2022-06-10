@@ -178,8 +178,6 @@ export default {
     align-self: flex-start;
     position: relative;
 
-    font-style: normal;
-    font-weight: 400;
     font-size: 10px;
     line-height: 1.3;
     letter-spacing: -0.02em;
@@ -193,12 +191,8 @@ export default {
     min-height: 36px;
     padding: 10px 16px;
 
-    font-style: normal;
-    font-weight: 400;
     font-size: 12px;
-    line-height: 1.25;
-
-    transition: $transition;
+    @include standartTransition(0.2);
 
     // .form__input_textarea
 
@@ -237,10 +231,7 @@ export default {
   // .form__error
 
   &__error {
-    font-style: normal;
-    font-weight: 400;
     font-size: 8px;
-    line-height: 1.25;
     letter-spacing: -0.02em;
 
     color: $accentColor;
@@ -257,14 +248,12 @@ export default {
     min-height: 36px;
     background: $submitColorActive;
 
-    font-style: normal;
     font-weight: 600;
     font-size: 12px;
-    line-height: 1.25;
 
     color: $accentColorLight;
 
-    transition: $transition;
+    @include standartTransition(0.2);
 
     &:disabled {
       background: $submitColorDisabled;
@@ -274,13 +263,5 @@ export default {
 }
 
 // animations
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.4s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
+@include vueFade(0.4);
 </style>

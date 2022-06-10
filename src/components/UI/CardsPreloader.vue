@@ -14,13 +14,10 @@ export default {
 .preloader {
   width: 100%;
   height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include standartFlex;
 
   font-weight: 600;
   font-size: 32px;
-  line-height: 1.25px;
 
   color: $textColorSecondary;
 

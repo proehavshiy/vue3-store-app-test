@@ -47,7 +47,7 @@ export default {
 }
 .card-enter-active,
 .card-leave-active {
-  transition: all 0.4s ease;
+  @include standartTransition(0.4);
 }
 .card-enter,
 .card-enter-from,
@@ -55,6 +55,6 @@ export default {
   opacity: 0;
 }
 .card-move {
-  transition: all 0.4s ease;
+  @include standartTransition(0.4);
 }
 </style>

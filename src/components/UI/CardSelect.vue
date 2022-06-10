@@ -70,10 +70,7 @@ export default {
   cursor: pointer;
   z-index: 999;
 
-  font-style: normal;
-  font-weight: 400;
   font-size: 12px;
-  line-height: 1.25;
   color: $textColorSecondary;
 
   // select__title
@@ -140,14 +137,6 @@ export default {
   }
 
   // transitions
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.2s linear;
-  }
-
-  .fade-enter-from,
-  .fade-leave-to {
-    opacity: 0;
-  }
+  @include vueFade(0.2);
 }
 </style>

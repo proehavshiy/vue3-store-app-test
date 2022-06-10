@@ -22,7 +22,7 @@ export default {
   top: -100%;
   right: 0;
 
-  transition: all 0.4s ease;
+  @include standartTransition(0.4);
   z-index: 999;
 
   &_visible {

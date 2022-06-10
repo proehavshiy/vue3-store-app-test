@@ -80,8 +80,6 @@ export default {
     flex-direction: column;
 
     color: $textColorMain;
-    font-style: normal;
-    line-height: 1.25;
   }
 
   // .card__heading
@@ -92,9 +90,7 @@ export default {
     font-weight: 600;
     font-size: 20px;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @include extraTextHidden;
   }
 
   // .card__text
@@ -103,7 +99,6 @@ export default {
     flex: 0 0 80px;
     margin-bottom: 32px;
 
-    font-weight: 400;
     font-size: 16px;
 
     overflow: hidden;
@@ -136,9 +131,7 @@ export default {
     font-weight: 600;
     font-size: 24px;
 
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @include extraTextHidden;
   }
 
   // card__btn
