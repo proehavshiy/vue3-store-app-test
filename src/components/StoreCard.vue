@@ -43,6 +43,11 @@ export default {
     opacity: 1;
   }
 
+  &:hover .card__img {
+    object-fit: contain;
+    transform: scale(80%);
+  }
+
   // card__img-wrapper
 
   &__img-wrapper {
@@ -53,11 +58,6 @@ export default {
     overflow: hidden;
 
     cursor: pointer;
-
-    &:hover > img {
-      object-fit: contain;
-      transform: scale(80%);
-    }
   }
   // .card__img
 
